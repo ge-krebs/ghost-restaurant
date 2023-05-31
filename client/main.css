@@ -9,3 +9,8 @@ a {
   text-decoration: none;
   color: white;
 }
+
+#smoothie-home-img {
+  border-radius: 10px;
+  height: 50vh;
+}
