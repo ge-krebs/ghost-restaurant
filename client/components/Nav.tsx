@@ -1,11 +1,11 @@
 function Nav() {
   return (
-    <div>
-      <h2>Nav</h2>
-      <ul>
-        <li>Build your continent list here</li>
-      </ul>
-    </div>
+    <ul>
+      <li><a href="#">home</a></li>
+      <li><a href="#">menu</a></li>
+      <li><a href="#">order</a></li>
+      <li><a href="#">lockers</a></li>
+    </ul>
   )
 }
 
