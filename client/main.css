@@ -3,6 +3,7 @@ body {
   width: 100%;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
 }
 
 a {
@@ -13,4 +14,25 @@ a {
 #smoothie-home-img {
   border-radius: 10px;
   height: 50vh;
+}
+
+/* MENU PAGE */
+
+#menu-container {
+  border: 2px solid white;
+  margin: 0 auto;
+  max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.item-container {
+  background-color: lightblue;
+  width: 25vh;
+  height: 35vh;
+  margin: 20px;
+  border: 2px solid white;
+  border-radius: 10px;
 }

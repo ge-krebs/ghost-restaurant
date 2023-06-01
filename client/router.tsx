@@ -11,6 +11,7 @@ import Menu from './components/Menu'
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
+      <Route path="/home" element={<Home />}></Route>
       <Route path="/menu" element={<Menu />}></Route>
     </Route>
   )
