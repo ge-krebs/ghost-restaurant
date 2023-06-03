@@ -4,7 +4,7 @@ import menu from '../../data/menu'
 
 interface Props {
   name: string
-  item: string
+  item: number
 }
 
 function Order() {
@@ -14,35 +14,33 @@ function Order() {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  const [allOrders, setOrders] = useState([{}])
+  const [nameInput, setNameInput] = useState('')
+  const [drinkInput, setDrinkInput] = useState('')
 
-  const [newOrder, setNewOrder] = useState<Props[]>([])
+  const handleNameInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setNameInput(event.target.value);
+  };
 
-  const handleType = (evt: ChangeEvent<HTMLInputElement>) => {
-    const key = evt.target.id
-    const newState = {
-      ...allOrders,
-      [key]: evt.target.value,
-    }
-    setNewOrder(newState)
-    console.log(newOrder)
+  const handleDrinkInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setDrinkInput(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(nameInput) //logs name input
+    console.log(drinkInput) //logs drink input (change to id not name)
+    //create function to parse these into orders obj or db
+    //use create randomlocker to send order to locker number
   }
-
-  const placeOrder = (evt: FormEvent) => {
-    evt.preventDefault()
-    setOrders([...allOrders, newOrder])
-    console.log(allOrders)
-  }
-
   return (
     //label or input on radio buttons is not working correctly, is allowing multiple selections of same radio group
     <>
       <h2>order now</h2>
       <div id="form-container">
-        <form onSubmit={placeOrder}>
+        <form onSubmit={handleSubmit}>
           <div id="form-name-container">
             <label htmlFor="name">your name:</label>
-            <input type="text" id="name" onChange={handleType} />
+            <input type="text" id="name" onChange={handleNameInput} />
           </div>
           <div className="order-item-container">
             {menu.map((item) => {
@@ -54,8 +52,8 @@ function Order() {
                     type="radio"
                     id="drink_id"
                     key={item.name}
-                    value={item.id.toString()}
-                    onChange={handleType}
+                    value={item.name} //can use item.id here to gather the drinks id to add to orders list in future
+                    onChange={handleDrinkInput}
                   />
                   <p>
                     {item.name} ${item.price}
@@ -69,13 +67,17 @@ function Order() {
         </form>
       </div>
       {/* display orders hopefully */}
-      <div>
+      {/* <div>
         <ul>
           {allOrders.map((order) => (
-            <li key={order.name}>{order.name}</li>
+            <>
+              <p>Thanks {order.name}!</p>
+              <p>Your order will be available for pick up in locker #</p>
+              <p>{order.item} (orderitem)</p>
+            </>
           ))}
         </ul>
-      </div>
+      </div> */}
     </>
   )
 }
@@ -86,3 +88,36 @@ export default Order
 //link back to menu to cust to check for ingredients
 //on order submit, display the customer order + what locker their food will be in
 //link to lockers to collect food
+
+
+//garbage
+
+// const [allOrders, setOrders] = useState([{}])
+
+// const [newOrder, setNewOrder] = useState({
+//   name: '',
+//   item: '',
+// })
+
+// const handleType = (evt: ChangeEvent<HTMLInputElement>) => {
+//   const key = evt.target.id
+//   const newState = {
+//     ...allOrders,
+//     [key]: evt.target.value,
+//   }
+//   console.log(newState)
+//   console.log(newOrder)
+// }
+
+// const placeOrder = (evt: FormEvent) => {
+//   evt.preventDefault()
+//   setOrders([...allOrders, newOrder])
+//   console.log(allOrders)
+// }
+
+// const [selectDrink, setSelectedDrink] = useState<string>()
+
+// const radioHandler = (evt: ChangeEvent<HTMLInputElement>) => {
+//   evt.preventDefault()
+//   setSelectedDrink(evt.target.value)
+// }

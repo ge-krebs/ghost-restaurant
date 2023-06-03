@@ -4,7 +4,7 @@ function Header() {
   return (
     <>
       <header>
-        <h1>ghost restaurant</h1>
+        <h1>hughs juicery</h1>
         <Nav />
       </header>
     </>
