@@ -2,61 +2,80 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import orders from '../../data/orders'
 import menu from '../../data/menu'
 
-interface Order {
-  id: number
+interface Props {
   name: string
-  drink_id: number
-  complete: boolean
+  item: string
 }
 
 function Order() {
-  const [newOrder, setNewOrder] = useState({
-    id: '',
-    name: '',
-    drink_id: '',
-    complete: '',
-  })
+  const randomLocker = (min: number, max: number) => {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+  const [allOrders, setOrders] = useState([{}])
+
+  const [newOrder, setNewOrder] = useState<Props[]>([])
 
   const handleType = (evt: ChangeEvent<HTMLInputElement>) => {
-    console.log(evt.target.id, evt.target.value)
     const key = evt.target.id
-    const newOrder = {
-      id: orders.length + 1,
+    const newState = {
+      ...allOrders,
       [key]: evt.target.value,
-      complete: false,
     }
+    setNewOrder(newState)
     console.log(newOrder)
+  }
+
+  const placeOrder = (evt: FormEvent) => {
+    evt.preventDefault()
+    setOrders([...allOrders, newOrder])
+    console.log(allOrders)
   }
 
   return (
     //label or input on radio buttons is not working correctly, is allowing multiple selections of same radio group
     <>
       <h2>order now</h2>
-      <form>
-        <label htmlFor="name">your name:</label>
-        <input type="text" id="name" onChange={handleType} />
-        <div className="order-item-container" onChange={handleType}>
-          {/* <label htmlFor="item">Drink</label> */}
-          {menu.map((item) => {
-            return (
-              <div className="item-input" key={item.name}>
-                <p>{item.name} $-{item.price}</p>
-                <img src={item.image} alt="juice" />
-                <label htmlFor="item">
-                <input
-                  className="item-input"
-                  type="radio"
-                  id="item"
-                  key={item.name}
-                  value={item.id}
-                />
-                </label>
-              </div>
-            )
-          })}
-        </div>
-        <button>Submit</button>
-      </form>
+      <div id="form-container">
+        <form onSubmit={placeOrder}>
+          <div id="form-name-container">
+            <label htmlFor="name">your name:</label>
+            <input type="text" id="name" onChange={handleType} />
+          </div>
+          <div className="order-item-container">
+            {menu.map((item) => {
+              return (
+                <div className="item-input" key={item.name}>
+                  <label htmlFor="item"></label>
+                  <input
+                    className="item-input"
+                    type="radio"
+                    id="drink_id"
+                    key={item.name}
+                    value={item.id.toString()}
+                    onChange={handleType}
+                  />
+                  <p>
+                    {item.name} ${item.price}
+                  </p>
+                  <img src={item.image} alt="juice" />
+                </div>
+              )
+            })}
+          </div>
+          <button>Submit</button>
+        </form>
+      </div>
+      {/* display orders hopefully */}
+      <div>
+        <ul>
+          {allOrders.map((order) => (
+            <li key={order.name}>{order.name}</li>
+          ))}
+        </ul>
+      </div>
     </>
   )
 }
