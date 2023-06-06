@@ -1,7 +1,7 @@
-// import db from 
+import db from './connection'
 
-// this is where the SQL queries run
+import { MenuItem } from '../../models/Menu'
 
-//export function getMenuItems() {
-  // return db.('menu').select('*')
-//}
+export function getMenuItems(): Promise<MenuItem[]> {
+  return db<MenuItem>('menu').select() //all
+}
