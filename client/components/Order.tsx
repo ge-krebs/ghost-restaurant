@@ -8,11 +8,11 @@ interface Props {
 }
 
 function Order() {
-  const randomLocker = (min: number, max: number) => {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  }
+  // const randomLocker = (min: number, max: number) => {
+  //   min = Math.ceil(min)
+  //   max = Math.floor(max)
+  //   return Math.floor(Math.random() * (max - min + 1)) + min
+  // }
 
   const [nameInput, setNameInput] = useState('')
   const [drinkInput, setDrinkInput] = useState('')
@@ -30,7 +30,7 @@ function Order() {
     console.log(nameInput) //logs name input
     console.log(drinkInput) //logs drink input (change to id not name)
     //create function to parse these into orders obj or db
-    //use create randomlocker to send order to locker number
+    //use create randomlocker to send order to locker number 
   }
   return (
     //label or input on radio buttons is not working correctly, is allowing multiple selections of same radio group
