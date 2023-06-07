@@ -1,6 +1,23 @@
 import menu from '../../data/menu'
 
+import { useEffect, useState } from 'react'
+import { MenuItem } from '../../models/Menu'
+import * as api from '../api/menuApi'
+
+//api.getMenuItems
+
 function Menu() {
+  const [menuItem, setMenuItems] = useState([] as MenuItem[])
+
+  useEffect(() => {
+    async function loadMenuItems() {
+      const data = await api.getMenuItems()
+      setMenuItems(data)
+    }
+    loadMenuItems()
+    console.log(menuItem)
+  })
+
   return (
     <>
       <h2>our menu</h2>
