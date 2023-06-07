@@ -1,24 +1,25 @@
 import menu from '../../data/menu'
 
-// import { useEffect, useState } from 'react'
-// import { MenuItem } from '../../models/Menu'
-// import * as api from '../api/menuApi'
+import { useEffect, useState } from 'react'
+import { MenuItem } from '../../models/Menu'
+import * as api from '../api/menuApi'
 
-//api.getMenuItems
+api.getMenuItems
 
 function Menu() {
-  // const [menuItem, setMenuItems] = useState([] as MenuItem[])
+  const [menuItem, setMenuItems] = useState([] as MenuItem[])
 
   //T H E   E R R O R   I S   H E R E
 
-  // useEffect(() => {
-  //   async function loadMenuItems() {
-  //     const data = await api.getMenuItems()
-  //     setMenuItems(data)
-  //   }
-  //   loadMenuItems()
-  //   console.log(menuItem)
-  // })
+  useEffect(() => {
+    async function loadMenuItems() {
+      const data = await api.getMenuItems()
+      console.log(data)
+      setMenuItems(data)
+    }
+    loadMenuItems()
+    console.log(menuItem)
+  })
 
   return (
     <>
