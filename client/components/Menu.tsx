@@ -1,10 +1,6 @@
-import menu from '../../data/menu'
-
 import { useEffect, useState } from 'react'
 import { MenuItem } from '../../models/Menu'
 import * as api from '../api/menuApi'
-
-api.getMenuItems
 
 function Menu() {
   const [menuItem, setMenuItems] = useState([] as MenuItem[])
@@ -14,24 +10,22 @@ function Menu() {
   useEffect(() => {
     async function loadMenuItems() {
       const data = await api.getMenuItems()
-      console.log(data)
       setMenuItems(data)
     }
     loadMenuItems()
-    console.log(menuItem)
-  })
+  }, [])
 
   return (
     <>
       <h2>our menu</h2>
       <div id="menu-container">
-        {menu.map((item) => {
+        {menuItem.map((item) => {
           return (
-            <div className="item-container" key={item.name}>
-              <p>{item.name}</p>
+            <div className="item-container" key={item.item}>
+              <p>{item.item}</p>
               <p>{item.price}</p>
-              <p>{item.ingredients}</p>
               <img src={item.image} alt="" />
+              <p>{item.description}</p>
             </div>
           )
         })}

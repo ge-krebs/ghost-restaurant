@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Using React Router to navigate the globe",
   "repository": "https://github.com/ge-krebs/ghost-restaurant",
-  "main": "server/index.js",
+  "main": "server/index.ts",
   "scripts": {
     "start": "node dist/server/index.js",
     "test": "vitest",

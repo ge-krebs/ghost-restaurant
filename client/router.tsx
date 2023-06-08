@@ -14,7 +14,7 @@ import Lockers from './components/Lockers'
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="/" element={<Home />}></Route>
+      <Route index element={<Home />}></Route>
       <Route path="/menu" element={<Menu />}></Route>
       <Route path="/order" element={<Order />}></Route>
       <Route path="/lockers" element={<Lockers />}></Route>
