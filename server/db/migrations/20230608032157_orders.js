@@ -3,9 +3,12 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable('lockers', (table) => {
+  return knex.schema.createTable('orders', (table) => {
     table.increments('id').primary
-    table.boolean('filled')
+    table.string('name')
+    table.integer('item_id')
+    table.integer('locker_id')
+    table.boolean('complete')
   })
 }
 
@@ -14,5 +17,6 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('lockers')
+  return knex.schema.dropTable('orders')
 }
+

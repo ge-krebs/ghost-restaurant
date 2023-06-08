@@ -1,13 +1,20 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
-import orders from '../../data/orders'
-import menu from '../../data/menu'
-
-interface Props {
-  name: string
-  item: number
-}
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { MenuItem } from '../../models/Menu'
+import * as api from '../api/menuApi'
 
 function Order() {
+  //get menu items for form//
+  const [menuItem, setMenuItems] = useState([] as MenuItem[])
+
+  useEffect(() => {
+    async function loadMenuItems() {
+      const data = await api.getMenuItems()
+      setMenuItems(data)
+    }
+    loadMenuItems()
+  }, [])
+
+  //random locker function for order
   // const randomLocker = (min: number, max: number) => {
   //   min = Math.ceil(min)
   //   max = Math.floor(max)
@@ -18,21 +25,22 @@ function Order() {
   const [drinkInput, setDrinkInput] = useState('')
 
   const handleNameInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setNameInput(event.target.value);
-  };
+    setNameInput(event.target.value)
+  }
 
   const handleDrinkInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setDrinkInput(event.target.value);
-  };
+    setDrinkInput(event.target.value)
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     console.log(nameInput) //logs name input
     console.log(drinkInput) //logs drink input (change to id not name)
     //create function to parse these into orders obj or db
-    //use create randomlocker to send order to locker number 
+    //use create randomlocker to send order to locker number
   }
   return (
+    // A   P R O B L E M //
     //label or input on radio buttons is not working correctly, is allowing multiple selections of same radio group
     <>
       <h2>order now</h2>
@@ -43,20 +51,20 @@ function Order() {
             <input type="text" id="name" onChange={handleNameInput} />
           </div>
           <div className="order-item-container">
-            {menu.map((item) => {
+            {menuItem.map((item) => {
               return (
-                <div className="item-input" key={item.name}>
+                <div className="item-input" key={item.item}>
                   <label htmlFor="item"></label>
                   <input
                     className="item-input"
                     type="radio"
                     id="drink_id"
-                    key={item.name}
-                    value={item.name} //can use item.id here to gather the drinks id to add to orders list in future
+                    key={item.item}
+                    value={item.id} //can use item.id here to gather the drinks id to add to orders list in future
                     onChange={handleDrinkInput}
                   />
                   <p>
-                    {item.name} ${item.price}
+                    {item.item} ${item.price}
                   </p>
                   <img src={item.image} alt="juice" />
                 </div>
@@ -88,7 +96,6 @@ export default Order
 //link back to menu to cust to check for ingredients
 //on order submit, display the customer order + what locker their food will be in
 //link to lockers to collect food
-
 
 //garbage
 

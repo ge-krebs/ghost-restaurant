@@ -5,8 +5,6 @@ import * as api from '../api/menuApi'
 function Menu() {
   const [menuItem, setMenuItems] = useState([] as MenuItem[])
 
-  //T H E   E R R O R   I S   H E R E
-
   useEffect(() => {
     async function loadMenuItems() {
       const data = await api.getMenuItems()
