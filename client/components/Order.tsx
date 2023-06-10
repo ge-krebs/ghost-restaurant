@@ -2,6 +2,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { MenuItem } from '../../models/Menu'
 import * as api from '../api/menuApi'
 
+import { OrderList } from '../../models/OrderList'
+
 function Order() {
   //get menu items for form//
   const [menuItem, setMenuItems] = useState([] as MenuItem[])
@@ -21,21 +23,16 @@ function Order() {
   //   return Math.floor(Math.random() * (max - min + 1)) + min
   // }
 
-  const [nameInput, setNameInput] = useState('')
-  const [drinkInput, setDrinkInput] = useState('')
+  const [newOrder, setNewOrder] = useState('')
+  const [createCustomerOrder, setCustomerOrder ] = useState([] as OrderList[])
 
-  const handleNameInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setNameInput(event.target.value)
-  }
-
-  const handleDrinkInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setDrinkInput(event.target.value)
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value)
+    setNewOrder(event.target.value)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(nameInput) //logs name input
-    console.log(drinkInput) //logs drink input (change to id not name)
     //create function to parse these into orders obj or db
     //use create randomlocker to send order to locker number
   }
@@ -48,20 +45,20 @@ function Order() {
         <form onSubmit={handleSubmit}>
           <div id="form-name-container">
             <label htmlFor="name">your name:</label>
-            <input type="text" id="name" onChange={handleNameInput} />
+            <input type="text" id="name" onChange={handleInput} />
           </div>
+          <label htmlFor="item">drink choice</label>
           <div className="order-item-container">
             {menuItem.map((item) => {
               return (
                 <div className="item-input" key={item.item}>
-                  <label htmlFor="item"></label>
                   <input
                     className="item-input"
                     type="radio"
                     id="drink_id"
                     key={item.item}
                     value={item.id} //can use item.id here to gather the drinks id to add to orders list in future
-                    onChange={handleDrinkInput}
+                    onChange={handleInput}
                   />
                   <p>
                     {item.item} ${item.price}
@@ -74,18 +71,6 @@ function Order() {
           <button>Submit</button>
         </form>
       </div>
-      {/* display orders hopefully */}
-      {/* <div>
-        <ul>
-          {allOrders.map((order) => (
-            <>
-              <p>Thanks {order.name}!</p>
-              <p>Your order will be available for pick up in locker #</p>
-              <p>{order.item} (orderitem)</p>
-            </>
-          ))}
-        </ul>
-      </div> */}
     </>
   )
 }
