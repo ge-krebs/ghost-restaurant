@@ -1,8 +1,10 @@
 body {
-  background-color: rgb(255, 208, 151);
+  /* background-color: rgb(253, 235, 214); */
   width: 100%;
-  color: white;
-  font-family: monospace;
+  height: 100%;
+  color: black;
+  background-color: #ffe0d9;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
   text-align: center;
   margin: 0 auto;
@@ -11,56 +13,88 @@ body {
 /* HEADER AND NAV */
 
 header {
-  background-color: rgb(255, 48, 210);
+  background-color: #FF9D87;
   margin: 0 auto;
 }
 
-h1 {
-  font-family: monospace;
+#header-container {
+  max-width: 1028px;
+  display: flex;
+  /* align-items: row; */
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+#header-title-container {
+  font-family: 'Gloria Hallelujah', cursive;
+  color: black;
+  font-size: 1.5rem;
+}
+
+#nav-container {
+  /* background-color: white; */
 }
 
 button {
-  background-color: #ff6309;
-  border: 2px solid hotpink;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 1.5rem;
+  background-color: #ffe0d9;
+  color: black;
   border-radius: 10px;
   margin: 10px;
   width: 100px;
   height: 50px
 }
 
+#order-now-btn {
+  width: 150px;
+  background-color: #ffe0d9;
+  color: black;
+}
+
 button:hover {
   background-color: white;
-  border: 2px solid white;
+  color: #FF9D87;
+  border: 2px solid black;
 }
 
-a {
-  text-decoration: none;
-  color: white;
+#order-now-btn:hover {
+  background-color: white;
+  color: #FF9D87;
+  border: 2px solid black;
 }
 
-#smoothie-home-img {
-  border-radius: 10px;
-  height: 50vh;
-}
-
-/* MENU PAGE */
+/* HOME PAGE */
 
 #menu-container {
-  border: 2px solid white;
-  margin: 0 auto;
-  max-width: 900px;
+  margin: auto;
+  margin-bottom: 30px;
+  max-width: 1028px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+#price {
+  font-size: 1.5rem;
+}
+
 .item-container {
-  background-color: lightblue;
-  width: 25vh;
-  height: 35vh;
+  background-color: #FF9D87;
+  width: 35vh;
+  height: 40vh;
   margin: 20px;
-  border: 2px solid white;
+  border: 2px solid black;
   border-radius: 10px;
 }
 
@@ -70,28 +104,42 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 auto;
+  max-width: 1028px;
+  margin: auto;
 }
 
+/* #ffe0d9;#FF9D87 */
+
 #form-name-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0 auto; 
-  width: 50%; 
-  background-color: hotpink;
-  border: 4px solid white; 
+  /* display: flex;
+  align-items: row; */
+  font-family: 'Gloria Hallelujah', cursive;
+  background-color: #ff9d87;
+  border: 2px solid black; 
   border-radius: 20px; 
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.5rem;
+}
+
+#name {
+  font-size: 1.5rem;
+  margin-left: 20px;
+}
+
+#juice-choice-container {
+  background-color: #ff9d87;
+  margin: 0 auto;
+  border: 2px solid black;
+  border-radius: 20px;
   padding: 10px;
   margin: 10px;
 }
 
 .order-item-container {
-  background-color: hotpink;
   margin: 0 auto;
-  width: 50%;
-  border: 4px solid white;
-  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -107,8 +155,7 @@ a {
 
 .item-input:hover {
   background-color: white;
-  color: hotpink;
-  opacity: 80%;
+  opacity: 90%;
 }
 
 /* LOCKERS PAGE */
@@ -135,4 +182,60 @@ a {
 
 .locker:hover {
   background-color: pink;
+}
+
+/* STAFF PAGE */
+
+#order-table-container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 2px solid black;
+  padding: 5px 10px 5px 10px;
+}
+
+.staff-table-row {
+  border: none
+}
+
+.staff-table-btn  {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  background-color: #FF9D87;
+  color: black;
+  border-radius: 5px;
+  margin: 2px;
+  width: 70px;
+  height: 40px
+}
+
+#delete-order-btn:hover {
+  background-color: #ffe0d9;
+}
+
+#menu-table-container {
+  max-width: 1028px;
+  margin: 0 auto;
+}
+
+#small-img {
+  max-width: 40px;
+}
+
+/* FOOTER CSS */
+
+footer {
+  background-color: #FF9D87;
+  margin: 0 auto;
+  color: black;
+  flex-shrink: 0;
+  padding: 10px;
+  margin-top: 40px;
 }
