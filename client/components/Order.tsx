@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { MenuItem } from '../../models/Menu'
 import * as api from '../api/menuApi'
 import { addOrder } from '../api/orderApi'
+import { fillLocker } from '../api/lockerApi'
 
 import { OrderList, NewOrder } from '../../models/OrderList'
 
@@ -33,13 +34,24 @@ function Order() {
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setNewOrder({...newOrder, [e.target.name]: e.target.value})
-    console.log(newOrder)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    markLockerFilled(newOrder.locker_id)
+    //takes newOrder.locker_id as a number and sends to new function
+    //new function sends locker id to back end to mark locker as filled
     return addOrder(newOrder) //submits order to api to carry to backend
   }
+
+  // const [orderLocker, setOrderlocker] = useState()
+
+  //marks locker as filled on order submission
+async function markLockerFilled(id: number) {
+    console.log('locker id ' + id + 'was filled')
+    await fillLocker(id)
+  }
+
   return (
     // A   P R O B L E M //
     //label or input on radio buttons is not working correctly, is allowing multiple selections of same radio group

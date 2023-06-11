@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { OrderList } from '../../models/OrderList'
 import * as api from '../api/orderApi'
 import MenuStaff from './MenuStaff'
@@ -42,7 +42,7 @@ function Orders() {
               <tr>
               <td key={order.id}>{order.id}</td>
               <td key={order.name + order.id}>{order.name}</td>
-              <td key={order.item_id + order.name}>{order.item_id}</td>
+              <td key={order.item_id + order.name}>{order.item}</td>
               <td key={order.locker_id + order.item_id}>{order.locker_id}</td>
               <td>{order.complete ? 'complete' : 'pending'}</td>
               <td className="staff-table-row">

@@ -4,6 +4,7 @@ export interface OrderList {
   item_id?: number
   locker_id?: number
   complete?: boolean
+  item?: string
 }
 
 export interface NewOrder {
