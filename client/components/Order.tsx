@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { MenuItem } from '../../models/Menu'
 import * as api from '../api/menuApi'
 import { addOrder } from '../api/orderApi'
 import { fillLocker, getUnfilledLockers } from '../api/lockerApi'
 
-import { OrderList, NewOrder } from '../../models/OrderList'
+import { NewOrder } from '../../models/OrderList'
 
 function Order() {
   //get menu items for form//
