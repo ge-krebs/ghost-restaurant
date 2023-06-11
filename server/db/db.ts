@@ -1,7 +1,7 @@
 import db from './connection'
 
 import { MenuItem } from '../../models/Menu'
-import { OrderList } from '../../models/OrderList'
+import { OrderList, NewOrder } from '../../models/OrderList'
 
 //get all menu items
 export function getMenuItems(): Promise<MenuItem[]> {
@@ -16,4 +16,14 @@ export function getOrders(): Promise<OrderList[]> {
 //export only open orders
 export function getOpenOrders() {
   return db('orders').select('*').where('complete', 'false')
+}
+
+//creates new order
+export function newOrder(data: NewOrder) {
+  return db('orders').insert(data)
+}
+
+//deletes an order
+export function deleteOrder(id: number) {
+  return db('orders').delete().where({id})
 }

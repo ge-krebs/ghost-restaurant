@@ -16,3 +16,11 @@ export async function addOrder(order: NewOrder) {
   }
   return res.body
 }
+
+export async function deleteOrder(id: number) {
+  const res = await request.delete(`api/v1/orders/${id}`)
+  if (!res.ok){
+    throw new Error()
+  }
+  return "order" + id + " was deleted"
+}

@@ -3,12 +3,12 @@ export interface OrderList {
   name: string
   item_id?: number
   locker_id?: number
-  completed?: boolean
+  complete?: boolean
 }
 
 export interface NewOrder {
   name: string
   item_id?: number
   locker_id?: number
-  completed?: boolean
+  complete?: boolean
 }
