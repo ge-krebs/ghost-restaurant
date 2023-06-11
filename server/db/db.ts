@@ -35,7 +35,7 @@ export function fillLocker(id: number){
   return db('lockers').where({id}).update({filled: true})
 }
 
-//exports unfilled lockers
+//exports unfilled locker numbers
 export function unfilledLockers(){
-  return db('lockers').select().where('filled', false)
+  return db('lockers').select('id').where('filled', false)
 }

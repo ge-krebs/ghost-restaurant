@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { MenuItem } from '../../models/Menu'
 import * as api from '../api/menuApi'
 import { addOrder } from '../api/orderApi'
-import { fillLocker } from '../api/lockerApi'
+import { fillLocker, getUnfilledLockers } from '../api/lockerApi'
 
 import { OrderList, NewOrder } from '../../models/OrderList'
 
@@ -18,17 +18,31 @@ function Order() {
     loadMenuItems()
   }, [])
 
-  // random locker function for order
-  const randomLocker = (min: number, max: number) => {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min
+  //gets unfilled lockers and stores them in a state
+  const [unfilledLockers, setUnfilledLockers] = useState([])
+
+  //needs a catch incase no lockers left
+  useEffect(() => {
+    async function loadUnfilledLockers(){
+      const data = await getUnfilledLockers()
+      const arr = []
+      data.map((x) => { arr.push(x.id)})
+      setUnfilledLockers(arr)
+    }
+    loadUnfilledLockers()
+  }, [])
+
+  //generates random locker # from empty lockers
+  function randomLocker(list: number[]){
+    const randomIndex = Math.floor(Math.random() * list.length)
+    const randomLocker = list[randomIndex]
+    return randomLocker
   }
 
   const [newOrder, setNewOrder] = useState<NewOrder>({
     name: '',
     item_id: 0,
-    locker_id: randomLocker(1,9),
+    locker_id: randomLocker(unfilledLockers),
     complete: false
   })
 
@@ -39,16 +53,11 @@ function Order() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     markLockerFilled(newOrder.locker_id)
-    //takes newOrder.locker_id as a number and sends to new function
-    //new function sends locker id to back end to mark locker as filled
     return addOrder(newOrder) //submits order to api to carry to backend
   }
 
-  // const [orderLocker, setOrderlocker] = useState()
-
   //marks locker as filled on order submission
-async function markLockerFilled(id: number) {
-    console.log('locker id ' + id + 'was filled')
+  async function markLockerFilled(id: number) {
     await fillLocker(id)
   }
 
