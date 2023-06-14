@@ -11,13 +11,16 @@ function Header() {
         <nav>
           <div id="nav-container">
             <ul>
-              <Link className="test" key="homeBtn" to="/">
+              <Link key="homeBtn" to="/">
                 <button>home</button>
               </Link>
-              <Link className="test" key="lockerBtn" to="/lockers">
+              <Link key="staffBtn" to="/orders">
+                <button>staff</button>
+              </Link>
+              <Link key="lockerBtn" to="/lockers">
                 <button>lockers</button>
               </Link>
-              <Link className="test" key="orderBtn" to="/order">
+              <Link key="orderBtn" to="/order">
                 <button id="order-now-btn">order now</button>
               </Link>
             </ul>
