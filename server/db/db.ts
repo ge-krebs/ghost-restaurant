@@ -30,6 +30,11 @@ export function deleteOrder(id: number) {
 
 // L O C K E R   Q U E R I E S //
 
+//gets all lockers
+export function getLockers(){
+  return db('lockers').select() //all
+}
+
 //marks a locker as filled
 export function fillLocker(id: number){
   return db('lockers').where({id}).update({filled: true})
