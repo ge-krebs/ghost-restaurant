@@ -1,7 +1,11 @@
 import request from 'superagent'
 
 export async function getAllLockers(){
-  
+  const res = await request.get('/api/v1/locker/pickup')
+  if (!res.ok){
+    throw new Error()
+  }
+  return res.body
 }
 
 export async function getUnfilledLockers(){

@@ -48,12 +48,23 @@ export function deleteOrder(id: number) {
 
 // L O C K E R   Q U E R I E S //
 
-//gets all lockers and attaches order, join is incorrect
+//gets all lockers and attaches order + memu
 export function getLockers(){
-  return db('lockers').select().join(
+  return db('lockers')
+  .select(
+    'lockers.id',
+    'lockers.filled',
+    'orders.id as order_id',
+    'orders.name',
+    'menu.item',
+    'menu.image',
+    )
+  .fullOuterJoin(
     'orders', {'orders.locker_id': 'lockers.id'}
-    ).where({'orders.complete': false})
+    )
+  .leftOuterJoin('menu', {'menu.id': 'orders.item_id'})
 }
+// .where({'orders.complete': false})
 
 //marks a locker as filled
 export function fillLocker(id: number){

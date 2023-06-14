@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getPickUpOrders } from '../api/orderApi'
+import { getAllLockers } from '../api/lockerApi'
 import { OrderPickUp } from '../../models/OrderList'
 import { Locker } from '../../models/Lockers'
 
@@ -7,11 +8,13 @@ function Lockers() {
 
   const [ lockers, setLockers ] = useState([] as Locker[])
 
-  // useEffect(() => {
-  //   async function showLockers(){
-  //     const data = await 
-  //   }
-  // })
+  useEffect(() => {
+    async function getLockerOrders(){
+      const data = await getAllLockers()
+      setLockers(data)
+    }
+    getLockerOrders()
+  }, [])
 
   const [ ordersForPickup, setOrdersForPickup ] = useState([] as OrderPickUp[])
 
