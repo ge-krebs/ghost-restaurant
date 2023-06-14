@@ -24,3 +24,11 @@ export async function deleteOrder(id: number) {
   }
   return "order" + id + " was deleted"
 }
+
+export async function getPickUpOrders(){
+  const res = await request.get('api/v1/orders/pickup')
+  if (!res.ok){
+    throw new Error()
+  }
+  return res.body
+}

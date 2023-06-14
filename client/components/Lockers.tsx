@@ -1,6 +1,27 @@
-import lockers from '../../data/lockers'
+import { useEffect, useState } from 'react'
+import { getPickUpOrders } from '../api/orderApi'
+import { OrderPickUp } from '../../models/OrderList'
+import { Locker } from '../../models/Lockers'
 
 function Lockers() {
+
+  const [ lockers, setLockers ] = useState([] as Locker[])
+
+  // useEffect(() => {
+  //   async function showLockers(){
+  //     const data = await 
+  //   }
+  // })
+
+  const [ ordersForPickup, setOrdersForPickup ] = useState([] as OrderPickUp[])
+
+  useEffect(() => {
+    async function pickUpOrders() {
+      const data = await getPickUpOrders()
+      setOrdersForPickup(data)
+    }
+    pickUpOrders()
+  })
 
   const func = () => {
     console.log("i was clicked")
@@ -12,7 +33,8 @@ function Lockers() {
         {lockers.map((locker) => {
           return (
             <div key={locker.id} className="locker" onClick={func}>
-              {locker.id}
+              {locker.filled ? 'yes' : 'no'}
+              
             </div>
           )
         })}
@@ -22,3 +44,5 @@ function Lockers() {
 }
 
 export default Lockers
+
+//bring in all tables showing orders, locker id and drink name

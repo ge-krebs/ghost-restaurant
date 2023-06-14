@@ -39,15 +39,20 @@ function Order() {
     return randomLocker
   }
 
+  // const locker = randomLocker(unfilledLockers)
+
   const [newOrder, setNewOrder] = useState<NewOrder>({
     name: '',
     item_id: 0,
-    locker_id: randomLocker(unfilledLockers),
+    locker_id: 0,
     complete: false
   })
 
+  console.log(newOrder)
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewOrder({...newOrder, [e.target.name]: e.target.value})
+    setNewOrder({...newOrder, [e.target.name]: e.target.value, locker_id: randomLocker(unfilledLockers)})
+    console.log(newOrder)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { fillLocker, unfilledLockers } from '../db/db'
+import { fillLocker, getLockers, unfilledLockers } from '../db/db'
 
 const router = express.Router()
 
@@ -10,6 +10,16 @@ router.get('/', async (req, res, next) => {
     const lockers = await unfilledLockers()
     res.json(lockers)
   } catch (e) {
+    next(e)
+  }
+})
+
+//gets lockers with orders which 
+router.get('/pickup', async (req, res, next) => {
+  try {
+    const lockerOrders = await getLockers()
+    res.json(lockerOrders)
+  } catch(e){
     next(e)
   }
 })

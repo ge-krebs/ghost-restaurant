@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { getOrders, newOrder, deleteOrder } from '../db/db'
+import { getOrders, newOrder, deleteOrder, getOrdersForPickUp } from '../db/db'
 
 const router = express.Router()
 
@@ -8,6 +8,15 @@ const router = express.Router()
 router.get('/', async (req, res, next) => {
   try {
     const orders = await getOrders()
+    res.json(orders)
+  } catch(e) {
+    next(e)
+  }
+})
+
+router.get('/pickup/', async (req, res, next) => {
+  try{
+    const orders = await getOrdersForPickUp()
     res.json(orders)
   } catch(e) {
     next(e)

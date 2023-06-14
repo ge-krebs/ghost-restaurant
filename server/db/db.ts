@@ -18,6 +18,24 @@ export function getOpenOrders() {
   return db('orders').select('*').where('complete', false)
 }
 
+//gets all orders + joins menu and lockers
+export function getOrdersForPickUp(){
+  return db('orders')
+    .select(
+    'orders.name', 
+    'orders.item_id', 
+    'orders.locker_id',
+    'orders.complete', 
+    'menu.item',
+    'menu.image',
+    'lockers.filled'
+    ).where('complete', false)
+    .join(
+      'menu', {'menu.id': 'orders.item_id'}
+    ).join(
+      'lockers', {'lockers.id': 'orders.locker_id'})
+}
+
 //creates new order
 export function newOrder(data: NewOrder) {
   return db('orders').insert(data)
@@ -30,9 +48,11 @@ export function deleteOrder(id: number) {
 
 // L O C K E R   Q U E R I E S //
 
-//gets all lockers
+//gets all lockers and attaches order, join is incorrect
 export function getLockers(){
-  return db('lockers').select() //all
+  return db('lockers').select().join(
+    'orders', {'orders.locker_id': 'lockers.id'}
+    ).where({'orders.complete': false})
 }
 
 //marks a locker as filled
