@@ -181,7 +181,23 @@ h3 {
 }
 
 .locker:hover {
-  background-color: pink;
+  background-color: #ffe0d9;
+}
+
+#locker-number-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 30px 10px 30px;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 1.2rem;
+}
+
+#collect-drink-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 30px 10px 30px;
 }
 
 /* STAFF PAGE */
@@ -225,7 +241,7 @@ th, td {
   margin: 0 auto;
 }
 
-#small-img {
+.small-img {
   max-width: 40px;
 }
 

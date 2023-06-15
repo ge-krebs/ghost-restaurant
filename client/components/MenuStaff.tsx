@@ -36,7 +36,7 @@ function MenuStaff() {
               <td key={item.item}>{item.item}</td>
               <td key={item.price + item.item}>${item.price}</td>
               <td key={item.description}>{item.description}</td>
-              <td><img id="small-img"src={item.image} alt="" /></td>
+              <td><img className="small-img"src={item.image} alt="" /></td>
               <td className="staff-table-row">
                 <button className="staff-table-btn">edit</button>
               </td>

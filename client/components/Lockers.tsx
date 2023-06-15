@@ -6,7 +6,7 @@ import { Locker } from '../../models/Lockers'
 
 function Lockers() {
 
-  const [ lockers, setLockers ] = useState([] as Locker[])
+  const [ lockers, setLockers ] = useState([])
 
   useEffect(() => {
     async function getLockerOrders(){
@@ -14,7 +14,6 @@ function Lockers() {
       setLockers(data)
     }
     getLockerOrders()
-    console.log(lockers)
   }, [])
 
   const [ ordersForPickup, setOrdersForPickup ] = useState([] as OrderPickUp[])
@@ -35,16 +34,28 @@ function Lockers() {
       <h2>Collect your juice using the locker # on your order!</h2>
       <div id="locker-container">
         {lockers.map((locker) => {
-          return (
-            <div key={locker.id} className="locker" onClick={func}>
-              {/* {if(locker.order_id < 0){
-                
-              }else{
-                
-              }} */}
-              
-            </div>
-          )
+          {if (locker.order_id === null) {
+            return (     
+            <div className="locker">     
+              <div id="locker-number-container">
+                <p>{locker.id}</p>
+              </div>
+            </div> 
+            )
+          } else {
+            return (
+              <div className="locker"> 
+              <div id="locker-number-container">
+                <p>{locker.id}</p>
+                <p>{locker.name}</p>
+              </div>
+              <div id="collect-drink-container">
+                <img className="small-img"src={locker.image} alt="drink photo" />
+                <button className="staff-table-btn">Collect</button>
+              </div>
+              </div>
+            )
+          }}
         })}
       </div>
     </>
@@ -54,3 +65,15 @@ function Lockers() {
 export default Lockers
 
 //bring in all tables showing orders, locker id and drink name
+
+          // return (
+          //     <div id="locker-number-container">
+          //     <p>{locker.id}</p>
+          //     <p>{locker.name}</p>
+          //     </div>
+          //     <div id="collect-drink-container">
+          //     <img className="small-img"src={locker.image} alt="drink photo" />
+          //     <button className="staff-table-btn">Collect</button>
+          //     </div>
+          //   </div>
+          // )
