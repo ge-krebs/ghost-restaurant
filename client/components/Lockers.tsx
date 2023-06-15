@@ -14,6 +14,7 @@ function Lockers() {
       setLockers(data)
     }
     getLockerOrders()
+    console.log(lockers)
   }, [])
 
   const [ ordersForPickup, setOrdersForPickup ] = useState([] as OrderPickUp[])
@@ -36,7 +37,11 @@ function Lockers() {
         {lockers.map((locker) => {
           return (
             <div key={locker.id} className="locker" onClick={func}>
-              {locker.filled ? 'yes' : 'no'}
+              {/* {if(locker.order_id < 0){
+                
+              }else{
+                
+              }} */}
               
             </div>
           )
