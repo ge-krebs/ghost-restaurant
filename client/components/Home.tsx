@@ -15,10 +15,6 @@ function Menu() {
 
   return (
     <>
-        {/* <h2>welcome to the ghost juice</h2>
-    <p>order from our menu then pick your juice up in the lockers!</p>
-    <p>a fully operational juicery without the need for foh staff</p> */}
-
       <h2>our menu</h2>
       <div id="menu-container">
         {menuItem.map((item) => {

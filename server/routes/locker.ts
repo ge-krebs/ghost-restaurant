@@ -1,13 +1,13 @@
 import express from 'express'
 
-import { fillLocker, getLockers, unfilledLockers } from '../db/db'
+import * as db from '../db/db'
 
 const router = express.Router()
 
 //gets unfilled lockers
 router.get('/', async (req, res, next) => {
   try {
-    const lockers = await unfilledLockers()
+    const lockers = await db.unfilledLockers()
     res.json(lockers)
   } catch (e) {
     next(e)
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 //gets lockers with orders which 
 router.get('/pickup', async (req, res, next) => {
   try {
-    const lockerOrders = await getLockers()
+    const lockerOrders = await db.getLockers()
     res.json(lockerOrders)
   } catch(e){
     next(e)
@@ -26,11 +26,9 @@ router.get('/pickup', async (req, res, next) => {
 
 //puts id for sql query update
 router.put('/:id', async (req, res, next) => {
-  console.log('or stuck here?')
   const id = Number(req.params.id)
-  console.log(id)
   try{
-    const filledLocker = await fillLocker(id)
+    const filledLocker = await db.fillLocker(id)
     res.json(filledLocker)
   } catch(e){
     next(e)

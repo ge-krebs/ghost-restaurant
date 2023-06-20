@@ -48,11 +48,8 @@ function Order() {
     complete: false
   })
 
-  console.log(newOrder)
-
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setNewOrder({...newOrder, [e.target.name]: e.target.value, locker_id: randomLocker(unfilledLockers)})
-    console.log(newOrder)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
