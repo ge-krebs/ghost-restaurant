@@ -23,33 +23,37 @@ function Order() {
 
   //needs a catch incase no lockers left
   useEffect(() => {
-    async function loadUnfilledLockers(){
+    async function loadUnfilledLockers() {
       const data = await getUnfilledLockers()
       const arr = []
-      data.map((x) => { arr.push(x.id)})
+      data.map((x) => {
+        arr.push(x.id)
+      })
       setUnfilledLockers(arr)
     }
     loadUnfilledLockers()
   }, [])
 
   //generates random locker # from empty lockers
-  function randomLocker(list: number[]){
+  function randomLocker(list: number[]) {
     const randomIndex = Math.floor(Math.random() * list.length)
     const randomLocker = list[randomIndex]
     return randomLocker
   }
 
-  // const locker = randomLocker(unfilledLockers)
-
   const [newOrder, setNewOrder] = useState<NewOrder>({
     name: '',
     item_id: 0,
     locker_id: 0,
-    complete: false
+    complete: false,
   })
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewOrder({...newOrder, [e.target.name]: e.target.value, locker_id: randomLocker(unfilledLockers)})
+    setNewOrder({
+      ...newOrder,
+      [e.target.name]: e.target.value,
+      locker_id: randomLocker(unfilledLockers),
+    })
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -75,24 +79,27 @@ function Order() {
             <input type="text" id="name" name="name" onChange={handleInput} />
           </div>
           <div id="juice-choice-container">
-            <label htmlFor="item" id="drink_id"><h3>choose your juice</h3></label>
+            <label htmlFor="drink_id" id="drink_id">
+              Drinks
+            </label>
             <div className="order-item-container">
               {menuItem.map((item) => {
                 return (
                   <div className="item-input" key={item.item}>
+                    <h3>choose your juice</h3>
                     <input
                       className="item-input"
                       type="checkbox"
                       id="drink_id"
                       name="item_id"
                       key={item.item}
-                      value={item.id} //can use item.id here to gather the drinks id to add to orders list in future
+                      value={item.id}
                       onChange={handleInput}
                     />
                     <p>
                       {item.item} ${item.price}
                     </p>
-                    <img src={item.image} alt="juice" />
+                    <img src={item.image} alt={item.item} />
                   </div>
                 )
               })}

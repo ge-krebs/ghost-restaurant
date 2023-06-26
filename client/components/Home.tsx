@@ -23,7 +23,6 @@ function Menu() {
               <h3>{item.item}</h3>
               <p id="price">${item.price}</p>
               <img src={item.image} alt="" />
-              {/* <p>{item.description}</p> */}
             </div>
           )
         })}
@@ -33,5 +32,3 @@ function Menu() {
 }
 
 export default Menu
-
-//https://www.flaticon.com/search?word=smoothie

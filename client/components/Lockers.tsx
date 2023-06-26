@@ -13,12 +13,6 @@ function Lockers() {
     getLockerOrders()
   }, [])
 
-  const pickUpOrder = (id: number) => {
-    //mark the order as completed
-    //remove the locker number from the order
-    //mark the locker as unfilled
-  }
-
   return (
     <>
       <h2>Collect your juice using the locker # on your order!</h2>
