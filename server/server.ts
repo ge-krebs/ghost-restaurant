@@ -13,7 +13,7 @@ server.use('/api/v1/locker', locker)
 
 if (process.env.NODE_ENV === 'production') {
   server.use('/assets', express.static(join(__dirname, '../assets')))
-  server.use('/', express.static(join(__dirname, '../public')))
+  server.use('/', express.static(join(__dirname, '../../public')))
   server.get('*', (req, res) => {
     res.sendFile(join(__dirname, '../index.html'))
   })
