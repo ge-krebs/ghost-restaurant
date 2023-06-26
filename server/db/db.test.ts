@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest'
 import connection from './connection'
-import { getMenuItems, getLockers, unfilledLockers, getOrders, getOpenOrders } from './db'
+import * as db from './db'
 
 beforeAll(async () => {
   await connection.migrate.latest()
@@ -26,7 +26,7 @@ describe('testing working', () => {
 //menu testing
 describe('getMenuItems', () => {
   it('returns the correct menu array', async () => {
-    const items = await getMenuItems()
+    const items = await db.getMenuItems()
 
     expect(items).toHaveLength(6)
     expect(items[0]).toHaveProperty('description')
@@ -37,28 +37,26 @@ describe('getMenuItems', () => {
 //locker testing
 describe('getLockers', () => {
   it('returns the correct locker array', async () => {
-    const lockers = await getLockers()
+    const lockers = await db.getLockers()
 
     expect(lockers).toHaveLength(9)
   })
   it.todo('returns the unfilled lockers only', async () => {
-    const lockers = await getLockers()
-    const unfilledIds = await unfilledLockers()
+    // const lockers = await getLockers()
+    // const unfilledIds = await unfilledLockers()
     //currently not returning the correct data from the db
-    // console.log(lockers)
-    // console.log(unfilledIds)
   })
 })
 
 //order testing
 describe('orders', async () => {
   it('returns the orders with the menu item name joined', async () => {
-    const orders = await getOrders()
+    const orders = await db.getOrders()
 
     expect(orders[0]).toHaveProperty('item')
   })
   it('returns only open orders', async () => {
-    const openOrders = await getOpenOrders()
+    const openOrders = await db.getOpenOrders()
 
     expect(openOrders[0].complete).toBe(0)
   })

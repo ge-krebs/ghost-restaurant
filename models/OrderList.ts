@@ -13,3 +13,11 @@ export interface NewOrder {
   locker_id?: number
   complete?: boolean
 }
+
+export interface OrderPickUp {
+  name: string
+  filled: boolean
+  item?: string
+  item_id?: number
+  locker_id?: number 
+}

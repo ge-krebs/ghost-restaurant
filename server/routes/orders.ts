@@ -1,34 +1,57 @@
 import express from 'express'
 
-import { getOrders, newOrder, deleteOrder } from '../db/db'
+import * as db from '../db/db'
 
 const router = express.Router()
 
 //gets all orders
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await getOrders()
+    const orders = await db.getOrders()
     res.json(orders)
-  } catch(e) {
+  } catch (e) {
     next(e)
   }
 })
 
+//gets incomplete orders (for pickup)
+router.get('/pickup/', async (req, res, next) => {
+  try {
+    const orders = await db.getOrdersForPickUp()
+    res.json(orders)
+  } catch (e) {
+    next(e)
+  }
+})
+
+//places a new order
 router.post('/', async (req, res, next) => {
   try {
-    const placeOrder = await newOrder(req.body)
+    const placeOrder = await db.newOrder(req.body)
     res.json(placeOrder)
   } catch (e) {
     next(e)
   }
 })
 
-router.delete('/:id', async (req,res,next) => {
+//deletes an order by id
+router.delete('/:id', async (req, res, next) => {
   const id = Number(req.params.id)
-  try{
-    const deletedOrder = await deleteOrder(id)
+  try {
+    const deletedOrder = await db.deleteOrder(id)
     res.json(deletedOrder)
-  } catch(e){
+  } catch (e) {
+    next(e)
+  }
+})
+
+//marks order as complete
+router.put('/completeOrder/:id', async (req, res, next) => {
+  const id = +req.params.id
+  try {
+    await db.completeOrder(id)
+    res.status(200)
+  } catch (e) {
     next(e)
   }
 })

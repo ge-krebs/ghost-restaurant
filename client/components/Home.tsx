@@ -15,10 +15,6 @@ function Menu() {
 
   return (
     <>
-        {/* <h2>welcome to the ghost juice</h2>
-    <p>order from our menu then pick your juice up in the lockers!</p>
-    <p>a fully operational juicery without the need for foh staff</p> */}
-
       <h2>our menu</h2>
       <div id="menu-container">
         {menuItem.map((item) => {
@@ -27,7 +23,6 @@ function Menu() {
               <h3>{item.item}</h3>
               <p id="price">${item.price}</p>
               <img src={item.image} alt="" />
-              {/* <p>{item.description}</p> */}
             </div>
           )
         })}
@@ -37,5 +32,3 @@ function Menu() {
 }
 
 export default Menu
-
-//https://www.flaticon.com/search?word=smoothie
