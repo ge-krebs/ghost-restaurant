@@ -74,3 +74,8 @@ export function fillLocker(id: number){
 export function unfilledLockers(){
   return db('lockers').select('id').where('filled', false)
 }
+
+//marks order as completed and removes locker number
+export function completeOrder(id: number){
+  return db('orders').update({complete: true, locker_id: null}).where({id})
+}
