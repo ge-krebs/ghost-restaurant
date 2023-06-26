@@ -13,18 +13,6 @@ function Lockers() {
     getLockerOrders()
   }, [])
 
-  //--IN PROGRESS FEATURE--//
-
-  // const [ ordersForPickup, setOrdersForPickup ] = useState([] as OrderPickUp[])
-
-  // useEffect(() => {
-  //   async function pickUpOrders() {
-  //     const data = await getPickUpOrders()
-  //     setOrdersForPickup(data)
-  //   }
-  //   pickUpOrders()
-  // })
-
   return (
     <>
       <h2>Collect your juice using the locker # on your order!</h2>
