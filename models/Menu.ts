@@ -5,3 +5,5 @@ export interface MenuItem {
   description: string
   image: string
 }
+
+export type Action = { type: 'SET_MENU'; payload: MenuItem[] }
