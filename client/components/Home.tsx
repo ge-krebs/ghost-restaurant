@@ -1,9 +1,15 @@
-import { useAppSelector } from '../hooks/hooks'
+import { useAppDispatch, useAppSelector } from '../hooks/hooks'
+import { useEffect } from 'react'
 import * as action from '../actions/menu'
 import { MenuItem } from '../../models/Menu'
 
 function Menu() {
+  const dispatch = useAppDispatch()
   const menuArr = useAppSelector((state) => state.menu) as MenuItem[]
+
+  useEffect(() => {
+    dispatch(action.getMenuItems())
+  }, [dispatch])
 
   return (
     <>
