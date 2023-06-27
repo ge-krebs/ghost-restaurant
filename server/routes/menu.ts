@@ -14,4 +14,15 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//deletes a menu item
+router.delete('/:id', async (req, res, next) => {
+  const id = +req.params.id
+  try {
+    await db.deleteMenuItem(id)
+    res.sendStatus(200)
+  } catch (e) {
+    next(e)
+  }
+})
+
 export default router

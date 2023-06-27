@@ -6,4 +6,6 @@ export interface MenuItem {
   image: string
 }
 
-export type Action = { type: 'SET_MENU'; payload: MenuItem[] }
+export type Action =
+  | { type: 'SET_MENU'; payload: MenuItem[] }
+  | { type: 'DEL_MENU_ITEM'; payload: number }
