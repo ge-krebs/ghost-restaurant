@@ -1,23 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../hooks/hooks'
+import { useEffect } from 'react'
+import * as action from '../actions/menu'
 import { MenuItem } from '../../models/Menu'
-import * as api from '../api/menuApi'
 
 function Menu() {
-  const [menuItem, setMenuItems] = useState([] as MenuItem[])
+  const dispatch = useAppDispatch()
+  const menuArr = useAppSelector((state) => state.menu) as MenuItem[]
 
   useEffect(() => {
-    async function loadMenuItems() {
-      const data = await api.getMenuItems()
-      setMenuItems(data)
-    }
-    loadMenuItems()
-  }, [])
+    dispatch(action.getMenuItems())
+  }, [dispatch])
 
   return (
     <>
       <h2>our menu</h2>
       <div id="menu-container">
-        {menuItem.map((item) => {
+        {menuArr.map((item) => {
           return (
             <div className="item-container" key={item.item}>
               <h3>{item.item}</h3>
