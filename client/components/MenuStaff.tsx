@@ -30,14 +30,14 @@ function MenuStaff() {
             </tr>
           </thead>
           <tbody>
-            {menuArr.map((item) => {
+            {menuArr.map((item, i) => {
               return (
                 <>
-                  <tr>
-                    <td key={item.id}>{item.id}</td>
-                    <td key={item.item}>{item.item}</td>
-                    <td key={item.price + item.item}>${item.price}</td>
-                    <td key={item.description}>{item.description}</td>
+                  <tr key={item.id + i}>
+                    <td>{item.id}</td>
+                    <td>{item.item}</td>
+                    <td>${item.price}</td>
+                    <td>{item.description}</td>
                     <td>
                       <img className="small-img" src={item.image} alt="" />
                     </td>

@@ -38,16 +38,14 @@ function Orders() {
             </tr>
           </thead>
           <tbody>
-            {allOrders.map((order) => {
+            {allOrders.map((order, i) => {
               return (
                 <>
-                  <tr>
-                    <td key={order.id}>{order.id}</td>
-                    <td key={order.name + order.id}>{order.name}</td>
-                    <td key={order.item_id + order.name}>{order.item}</td>
-                    <td key={order.locker_id + order.item_id}>
-                      {order.locker_id}
-                    </td>
+                  <tr key={order.id + i}>
+                    <td>{order.id}</td>
+                    <td>{order.name}</td>
+                    <td>{order.item}</td>
+                    <td>{order.locker_id}</td>
                     <td>{order.complete ? 'complete' : 'pending'}</td>
                     <td className="staff-table-row">
                       <button
