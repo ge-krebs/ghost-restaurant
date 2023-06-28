@@ -3,14 +3,21 @@ import db from './connection'
 import { MenuItem } from '../../models/Menu'
 import { OrderList, NewOrder } from '../../models/OrderList'
 
+// M E N U   Q U E R I E S //
+
 //get all menu items
 export function getMenuItems(): Promise<MenuItem[]> {
   return db<MenuItem>('menu').select() //all
 }
 
 //delete menu item
-export function deleteMenuItem(id: number): Promise<number> {
-  return db('menu').del().where({ id })
+export function deleteMenuItem(id: number) {
+  return db('menu').delete().where({ id })
+}
+
+//adds menu item
+export function addMenuItem(data: MenuItem) {
+  return db('menu').insert(data)
 }
 
 //get all orders + joins menu to get item name

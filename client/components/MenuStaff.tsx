@@ -12,7 +12,7 @@ function MenuStaff() {
   }, [dispatch])
 
   const handleDelete = (id: number) => {
-    dispatch(action.delMenuItem(id))
+    dispatch(action.delMenuItemThunk(id))
   }
 
   return (

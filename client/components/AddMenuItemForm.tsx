@@ -17,8 +17,7 @@ function AddMenuItemForm() {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
-    // dispatch(actions.addMenuItem(formData))
-    console.log('it was submitted')
+    dispatch(actions.addMenuItemThunk(formData))
   }
 
   return (
@@ -26,8 +25,8 @@ function AddMenuItemForm() {
       <div id="form-container">
         <h2>Add New Menu Item</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Item Name:</label>
-          <input id="name" type="text" name="name" onChange={handleChange} />
+          <label htmlFor="item">Item Name:</label>
+          <input id="item" type="text" name="item" onChange={handleChange} />
           <label htmlFor="price">Price:</label>
           <input
             id="price"

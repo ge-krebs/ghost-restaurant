@@ -5,6 +5,7 @@ import { ThunkAction } from '../store'
 
 export const SET_MENU = 'SET_MENU'
 export const DEL_MENU_ITEM = 'DEL_MENU_ITEM'
+export const ADD_MENU_ITEM = 'ADD_MENU_ITEM'
 
 export function setMovies(menu: MenuItem[]) {
   return {
@@ -20,14 +21,18 @@ export function delMenuItem(id: number) {
   }
 }
 
+export function addMenuItem(item: MenuItem) {
+  return {
+    type: ADD_MENU_ITEM,
+    payload: item,
+  }
+}
+
 //--THUNKS--//
 export function getMenuItems(): ThunkAction {
   return async (dispatch) => {
     try {
-      //call api function and receive our arr of data
       const menuArr = await api.getMenuItems()
-      //dispatch the action to abv function that returns
-      //type and payload as movies for the reducers
       dispatch(setMovies(menuArr))
     } catch (err) {
       console.log('an error in the thunk, ' + err)
@@ -35,11 +40,23 @@ export function getMenuItems(): ThunkAction {
   }
 }
 
-export function delMovieThunk(id: number): ThunkAction {
+export function delMenuItemThunk(id: number): ThunkAction {
   return async (dispatch) => {
     try {
       await api.deleteMenuItem(id)
       dispatch(delMenuItem(id))
+    } catch (err) {
+      console.error('an error in the thunk, ' + err)
+    }
+  }
+}
+
+export function addMenuItemThunk(item: MenuItem): ThunkAction {
+  return async (dispatch) => {
+    console.log(item)
+    try {
+      const newItem = await api.addMenuItem(item)
+      dispatch(addMenuItem(newItem))
     } catch (err) {
       console.error('an error in the thunk, ' + err)
     }

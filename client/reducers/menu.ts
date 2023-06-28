@@ -1,5 +1,5 @@
 import { MenuItem, Action } from '../../models/Menu'
-import { SET_MENU, DEL_MENU_ITEM } from '../actions/menu'
+import { SET_MENU, DEL_MENU_ITEM, ADD_MENU_ITEM } from '../actions/menu'
 
 const initialState = [] as MenuItem[]
 
@@ -11,6 +11,8 @@ export default function moviesReducer(state = initialState, action: Action) {
       return payload
     case DEL_MENU_ITEM:
       return  state.filter(menu => menu.id !== payload)
+    case ADD_MENU_ITEM:
+      return [payload, ...state]
     default:
       return state
   }
