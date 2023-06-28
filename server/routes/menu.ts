@@ -28,7 +28,6 @@ router.delete('/:id', async (req, res, next) => {
 //adds a menu item
 router.post('/', async (req, res, next) => {
   const data = { ...req.body }
-  console.log(data)
   try {
     await db.addMenuItem(data)
     res.json(data)

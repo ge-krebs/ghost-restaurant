@@ -21,7 +21,6 @@ function Order() {
   //gets unfilled lockers and stores them in a state
   const [unfilledLockers, setUnfilledLockers] = useState([])
 
-  //needs a catch incase no lockers left
   useEffect(() => {
     async function loadUnfilledLockers(){
       const data = await getUnfilledLockers()
@@ -38,8 +37,6 @@ function Order() {
     const randomLocker = list[randomIndex]
     return randomLocker
   }
-
-  // const locker = randomLocker(unfilledLockers)
 
   const [newOrder, setNewOrder] = useState<NewOrder>({
     name: '',
@@ -64,8 +61,6 @@ function Order() {
   }
 
   return (
-    // A   P R O B L E M //
-    //label or input on radio buttons is not working correctly, is allowing multiple selections of same radio group
     <>
       <h2>order now</h2>
       <div id="form-container">
@@ -86,7 +81,7 @@ function Order() {
                       id="drink_id"
                       name="item_id"
                       key={item.item}
-                      value={item.id} //can use item.id here to gather the drinks id to add to orders list in future
+                      value={item.id}
                       onChange={handleInput}
                     />
                     <p>
@@ -106,7 +101,3 @@ function Order() {
 }
 
 export default Order
-
-//loop display all menu items, name, price, image?
-//on order submit, display the customer order + what locker their food will be in
-//link to lockers to collect food

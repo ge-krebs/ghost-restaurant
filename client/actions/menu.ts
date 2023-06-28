@@ -35,7 +35,7 @@ export function getMenuItems(): ThunkAction {
       const menuArr = await api.getMenuItems()
       dispatch(setMovies(menuArr))
     } catch (err) {
-      console.log('an error in the thunk, ' + err)
+      console.error('an error in the thunk, ' + err)
     }
   }
 }
@@ -53,7 +53,6 @@ export function delMenuItemThunk(id: number): ThunkAction {
 
 export function addMenuItemThunk(item: MenuItem): ThunkAction {
   return async (dispatch) => {
-    console.log(item)
     try {
       const newItem = await api.addMenuItem(item)
       dispatch(addMenuItem(newItem))

@@ -83,7 +83,6 @@ export function getLockers() {
     .fullOuterJoin('orders', { 'orders.locker_id': 'lockers.id' })
     .leftOuterJoin('menu', { 'menu.id': 'orders.item_id' })
 }
-// .where({'orders.complete': false})
 
 //marks a locker as filled
 export function fillLocker(id: number) {

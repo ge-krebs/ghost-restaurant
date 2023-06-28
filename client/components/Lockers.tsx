@@ -13,12 +13,6 @@ function Lockers() {
     getLockerOrders()
   }, [])
 
-  const pickUpOrder = (id: number) => {
-    //mark the order as completed
-    //remove the locker number from the order
-    //mark the locker as unfilled
-  }
-
   return (
     <>
       <h2>Collect your juice using the locker # on your order!</h2>
@@ -41,7 +35,6 @@ function Lockers() {
               </div>
               <div id="collect-drink-container">
                 <img className="small-img"src={locker.image} alt="chosen menu item" />
-                {/* <button className="staff-table-btn" onClick={pickUpOrder(locker.order_id)}>Collect</button> */}
               </div>
               </div>
             )
@@ -53,15 +46,3 @@ function Lockers() {
 }
 
 export default Lockers
-
-  //--IN PROGRESS FEATURE--//
-
-  // const [ ordersForPickup, setOrdersForPickup ] = useState([] as OrderPickUp[])
-
-  // useEffect(() => {
-  //   async function pickUpOrders() {
-  //     const data = await getPickUpOrders()
-  //     setOrdersForPickup(data)
-  //   }
-  //   pickUpOrders()
-  // })

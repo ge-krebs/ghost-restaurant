@@ -30,5 +30,3 @@ function Menu() {
 }
 
 export default Menu
-
-//https://www.flaticon.com/search?word=smoothie
