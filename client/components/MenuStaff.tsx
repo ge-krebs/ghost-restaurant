@@ -32,25 +32,23 @@ function MenuStaff() {
           <tbody>
             {menuArr.map((item, i) => {
               return (
-                <>
-                  <tr key={item.id + i}>
-                    <td>{item.id}</td>
-                    <td>{item.item}</td>
-                    <td>${item.price}</td>
-                    <td>{item.description}</td>
-                    <td>
-                      <img className="small-img" src={item.image} alt="" />
-                    </td>
-                    <td className="staff-table-row">
-                      <button
-                        className="staff-table-btn"
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        delete
-                      </button>
-                    </td>
-                  </tr>
-                </>
+                <tr key={item.item + i}>
+                  <td>{item.id}</td>
+                  <td>{item.item}</td>
+                  <td>${item.price}</td>
+                  <td>{item.description}</td>
+                  <td>
+                    <img className="small-img" src={item.image} alt="" />
+                  </td>
+                  <td className="staff-table-row">
+                    <button
+                      className="staff-table-btn"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      delete
+                    </button>
+                  </td>
+                </tr>
               )
             })}
           </tbody>

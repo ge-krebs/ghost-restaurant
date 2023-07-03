@@ -40,23 +40,21 @@ function Orders() {
           <tbody>
             {allOrders.map((order, i) => {
               return (
-                <>
-                  <tr key={order.id + i}>
-                    <td>{order.id}</td>
-                    <td>{order.name}</td>
-                    <td>{order.item}</td>
-                    <td>{order.locker_id}</td>
-                    <td>{order.complete ? 'complete' : 'pending'}</td>
-                    <td className="staff-table-row">
-                      <button
-                        className="staff-table-btn"
-                        onClick={() => deleteOrder(order.id)}
-                      >
-                        delete
-                      </button>
-                    </td>
-                  </tr>
-                </>
+                <tr key={order.id + i}>
+                  <td>{order.id}</td>
+                  <td>{order.name}</td>
+                  <td>{order.item}</td>
+                  <td>{order.locker_id}</td>
+                  <td>{order.complete ? 'complete' : 'pending'}</td>
+                  <td className="staff-table-row">
+                    <button
+                      className="staff-table-btn"
+                      onClick={() => deleteOrder(order.id)}
+                    >
+                      delete
+                    </button>
+                  </td>
+                </tr>
               )
             })}
           </tbody>
